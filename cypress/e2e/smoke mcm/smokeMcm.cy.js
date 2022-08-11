@@ -7,8 +7,7 @@ describe('10 case for smoke test MCM', () => {
 
     const service = new Service();
     beforeEach (() => {
-        
-        
+                
         cy.viewport(mcm.screenWidth, mcm.screenHight);
         cy.visit(mcm.testServer);     
         cy.get('#username')
