@@ -1,24 +1,22 @@
-
-
-
 import Service from './service.js';
-
-let testSearch = 'тест';
-let testSearchExactly = 'test vl 45 version';
+import mcm from '../../fixtures/mcm.json'
+let testSearch = mcm.testSearch;
+let testSearchExactly = mcm.testSearchExactly;
 
 describe('10 case for smoke test MCM', () => {
 
     const service = new Service();
     beforeEach (() => {
         
-        cy.viewport(1920, 1080);
-        cy.visit('https://1657278262-tt.pharmahrm.com/');     
+        
+        cy.viewport(mcm.screenWidth, mcm.screenHight);
+        cy.visit(mcm.testServer);     
         cy.get('#username')
-        .type('Administrator')
-        .should('have.value', 'Administrator');
+        .type(mcm.userName)
+        .should('have.value', mcm.userName);
         cy.get('#password')
-        .type('GCq495v3=')
-        .should('have.value', 'GCq495v3=');
+        .type(mcm.userPassword)
+        .should('have.value', mcm.userPassword);
         cy.get('.btn')
         .should('be.visible')
         .click();  
