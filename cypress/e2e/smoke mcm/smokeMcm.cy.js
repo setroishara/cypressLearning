@@ -230,9 +230,7 @@ describe('10 case for smoke test MCM', () => {
 
         cy.get('#edit-target-form')
         .should('not.be.visible');
-
-        
-        
+      
     });
 
 })
