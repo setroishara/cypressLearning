@@ -19,9 +19,11 @@ describe('10 case for smoke test MCM', () => {
         cy.get('.btn')
         .should('be.visible')
         .click();  
+        cy.get('h1', {timeout:10000}).should('be.visible')
         cy.get('html', {timeout: 10000})
         .invoke('attr', 'lang')
-        .should('equal', 'ru');
+        .should('eq', mcm.language);
+    
         service.btnMCM().click({force: true});
         
 });
@@ -85,11 +87,11 @@ describe('10 case for smoke test MCM', () => {
 
         cy.get('#edit-target > div > div > div.modal-header.clearfix > h4')
         .should('be.visible')
-        .and('have.text', 'Целевая аудитория');
+        .and('have.text', mcm.targetAudience);
 
         cy.get('#edit-target-form > div:nth-child(1) > label')
         .should('be.visible')
-        .and('have.text', 'Название ЦА:');
+        .and('have.text', mcm.targetName);
 
         cy.get('#name')
         .should('be.visible');
