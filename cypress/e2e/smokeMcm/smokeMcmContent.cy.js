@@ -25,19 +25,11 @@ describe('Test main page of MCM', () => {
         
 });
 
-    it('1 case: go to page', () => {
+   
 
-        cy.get('[ui-sref="content"]')
-        .click();
+    it('1 case: visibility of elements', () => {
 
-        cy.get('div.search')
-        .should('be.visible');
-
-    });
-
-    it('2 case: visibility of elements', () => {
-
-        cy.get('[ui-sref="content"]')
+        cy.get('ul.secondary-menu.nav.navbar-nav > li:nth-child(1) > a')
         .click();
 
         cy.get('div.search')
@@ -64,13 +56,12 @@ describe('Test main page of MCM', () => {
         cy.get('div.add-button-dropdown')
         .should('be.visible');
 
-        cy.get('ui-view > div:nth-child(2) > div')
-        .should('be.visible');
+        
 
     });
 
-    it('3 case: open content creation method selection', () => {
-        cy.get('[ui-sref="content"]')
+    it('2 case: open content creation method selection', () => {
+        cy.get('ul.secondary-menu.nav.navbar-nav > li:nth-child(1) > a')
         .click();
 
         cy.get('.btn-telegram')
@@ -102,8 +93,8 @@ describe('Test main page of MCM', () => {
         .should('be.visible');
     });
 
-    it('4 case: visibility of viber content creation elements', () => {
-        cy.get('[ui-sref="content"]', {timeout:10000})
+    it('3 case: visibility of viber content creation elements', () => {
+        cy.get('ul.secondary-menu.nav.navbar-nav > li:nth-child(1) > a', {timeout:10000})
         .click();
 
         cy.get('div.add-button-dropdown', {timeout: 10000})

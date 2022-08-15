@@ -25,23 +25,18 @@ describe('Test main page of MCM', () => {
         
 });
 
-    it('1 case: go to page', () => {
-        cy.get('#navbar-collapse-1 > span')
-        .should('be.visible');      
-    })
-
-    it('2 case: visibility dashbords', () => {
+    it('1 case: visibility dashbords on main page', () => {
      cy.get('.highcharts-background')
      .should('be.visible');
-     cy.get('[ui-sref="content"]')
+     cy.get('ul.secondary-menu.nav.navbar-nav > li:nth-child(1) > a')
      .should('be.visible');
-     cy.get('[ui-sref="target"]')
+     cy.get('ul.secondary-menu.nav.navbar-nav > li:nth-child(2) > a')
      .should('be.visible');
-     cy.get('[ui-sref="distribution"]')
+     cy.get('ul.secondary-menu.nav.navbar-nav > li:nth-child(3) > a')
      .should('be.visible');
-     cy.get('[ui-sref="reports"]')
+     cy.get('ul.secondary-menu.nav.navbar-nav > li:nth-child(4) > a')
      .should('be.visible');
-     cy.get('[ui-sref="conference"]')
+     cy.get('ul.secondary-menu.nav.navbar-nav > li:nth-child(5) > a')
      .should('be.visible');
     })
 

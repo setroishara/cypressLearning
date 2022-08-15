@@ -30,7 +30,7 @@ describe('10 case for smoke test MCM', () => {
 
     it('1 case: go to page', () => {
 
-        cy.get('[ui-sref="target"]', {timeout: 10000})
+        cy.get('ul.secondary-menu.nav.navbar-nav > li:nth-child(2) > a', {timeout: 10000})
         .should('be.visible')
         .click();
 
@@ -40,7 +40,7 @@ describe('10 case for smoke test MCM', () => {
 
     it('2 case: visibility elements', () => {
 
-        cy.get('[ui-sref="target"]', {timeout: 10000})
+        cy.get('ul.secondary-menu.nav.navbar-nav > li:nth-child(2) > a', {timeout: 10000})
         .click();
 
         cy.get('.ng-scope > input', {timeout: 10000})
@@ -58,7 +58,7 @@ describe('10 case for smoke test MCM', () => {
 
     it('3 case: is work add button', () => {
 
-        cy.get('[ui-sref="target"]', {timeout: 10000})
+        cy.get('ul.secondary-menu.nav.navbar-nav > li:nth-child(2) > a', {timeout: 10000})
         .click();
          
         cy.get('#edit-target> .modal-dialog > .modal-content')
@@ -74,7 +74,7 @@ describe('10 case for smoke test MCM', () => {
 
     it('4 case: visibility elements in add target window', () => {
 
-        cy.get('[ui-sref="target"]', {timeout: 10000})
+        cy.get('ul.secondary-menu.nav.navbar-nav > li:nth-child(2) > a', {timeout: 10000})
         .click();
 
         cy.get('.btn.btn-add', {timeout: 10000})
@@ -122,7 +122,7 @@ describe('10 case for smoke test MCM', () => {
 
     it('5 case: search from upper case', () => {
 
-        cy.get('[ui-sref="target"]', {timeout: 10000})
+        cy.get('ul.secondary-menu.nav.navbar-nav > li:nth-child(2) > a', {timeout: 10000})
         .click();
          
          
@@ -143,7 +143,7 @@ describe('10 case for smoke test MCM', () => {
 
     it('6 case: search from lower case', () => {
 
-        cy.get('[ui-sref="target"]', {timeout: 10000})
+        cy.get('ul.secondary-menu.nav.navbar-nav > li:nth-child(2) > a', {timeout: 10000})
         .click();
          
         
@@ -160,7 +160,7 @@ describe('10 case for smoke test MCM', () => {
 
     it('7 case: search slice word', () => {
 
-        cy.get('[ui-sref="target"]', {timeout: 10000})
+        cy.get('ul.secondary-menu.nav.navbar-nav > li:nth-child(2) > a', {timeout: 10000})
         .click();
          
         
@@ -178,7 +178,7 @@ describe('10 case for smoke test MCM', () => {
 
     it('8 case: search exactly word', () => {
 
-        cy.get('[ui-sref="target"]', {timeout: 10000})
+        cy.get('ul.secondary-menu.nav.navbar-nav > li:nth-child(2) > a', {timeout: 10000})
         .click();
          
         
@@ -196,7 +196,7 @@ describe('10 case for smoke test MCM', () => {
 
     it('9 case, save TA with empty fields', () => {
 
-        cy.get('[ui-sref="target"]', {timeout: 10000})
+        cy.get('ul.secondary-menu.nav.navbar-nav > li:nth-child(2) > a', {timeout: 10000})
         .click();
 
         cy.get('.btn.btn-add')
@@ -215,7 +215,7 @@ describe('10 case for smoke test MCM', () => {
 
     it('10 case, enter to add TA page and press Cancel', () => {
 
-        cy.get('[ui-sref="target"]', {timeout: 10000})
+        cy.get('ul.secondary-menu.nav.navbar-nav > li:nth-child(2) > a', {timeout: 10000})
         .click();
 
         cy.get('.btn.btn-add')
