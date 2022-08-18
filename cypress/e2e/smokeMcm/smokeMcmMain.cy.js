@@ -1,5 +1,5 @@
 import Service from './service.js';
-import mcm from '../../fixtures/mcm.json'
+import mcm from '../../fixtures/mcmSettings.json'
 
 describe('Test main page of MCM', () => {
 

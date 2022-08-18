@@ -1,12 +1,14 @@
 {
     "userName" : "Administrator",
     "userPassword" : "GCq495v3=",
-    "testServer" : "https://1657278262-tt.pharmahrm.com/",
+    "testServer" : "https://1657278262-tt.pharmahrm.com/login",
     "screenWidth" : 1920,
     "screenHight" : 1080,
     "testSearch" : "тест",
     "testSearchExactly" : "test vl 45 version",
     "language" : "ru",
     "targetAudience" : "Целевая аудитория",
-    "targetName" : "Название ЦА:"
+    "targetName" : "Название ЦА:",
+    "contentViberName" : "Название:",
+    "contentViberNameEditWindow" : "Viber Шаблон"
  }

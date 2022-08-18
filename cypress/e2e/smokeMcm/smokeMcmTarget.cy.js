@@ -1,5 +1,6 @@
 import Service from './service.js';
-import mcm from '../../fixtures/mcm.json'
+import mcm from '../../fixtures/mcmSettings.json';
+import mcmElement from '../../fixtures/mcmElement.json'
 let testSearch = mcm.testSearch;
 let testSearchExactly = mcm.testSearchExactly;
 
@@ -28,93 +29,111 @@ describe('10 case for smoke test MCM', () => {
         
 });
 
-    it('1 case: go to page', () => {
+    it('1 case: transition from main mcm page to target and visibility main elements', () => {
 
-        cy.get('ul.secondary-menu.nav.navbar-nav > li:nth-child(2) > a', {timeout: 10000})
+        cy.get(mcmElement.transitionToTarget)
         .should('be.visible')
         .click();
-
-        cy.get('.ng-scope > input', {timeout: 10000})
+        cy.get(mcmElement.transitionToContent)
         .should('be.visible');
-    })
+        cy.get(mcmElement.transitionToTarget)
+        .should('be.visible');
+        cy.get(mcmElement.transitionToDistribution)
+        .should('be.visible');
+        cy.get(mcmElement.transitionToReports)
+        .should('be.visible');
+        cy.get(mcmElement.transitionToConferences)
+        .should('be.visible');
+        cy.get(mcmElement.searchField, {timeout: 10000})
+        .should('be.visible');
 
-    it('2 case: visibility elements', () => {
 
-        cy.get('ul.secondary-menu.nav.navbar-nav > li:nth-child(2) > a', {timeout: 10000})
+    });
+
+    it('2 case: visibility target elements', () => {
+
+        cy.get(mcmElement.transitionToTarget, {timeout: 10000})
         .click();
 
-        cy.get('.ng-scope > input', {timeout: 10000})
+        cy.get(mcmElement.searchField, {timeout: 10000})
         .should('be.visible');
 
-        cy.get('div.header-list-group', {timeout: 10000})
+        cy.get(mcmElement.headerListGroup, {timeout: 10000})
         .should('be.visible');
 
-        cy.get('mcm-pagination', {timeout: 10000})
+        cy.get(mcmElement.showArchiveChrxbox)
         .should('be.visible');
 
-        cy.get('.btn.btn-add', {timeout: 10000})
+        cy.get(mcmElement.sortDropDownMenu)
+        .should('be.visible');
+
+        cy.get(mcmElement.paginationBlock, {timeout: 10000})
+        .should('be.visible');
+
+        cy.get(mcmElement.paginationEnterPageNumber)
+        .should('be.visible');
+
+        cy.get(mcmElement.addButton, {timeout: 10000})
         .should('be.visible');
     })
 
-    it('3 case: is work add button', () => {
+    it('3 case: is work add button?', () => {
 
-        cy.get('ul.secondary-menu.nav.navbar-nav > li:nth-child(2) > a', {timeout: 10000})
+        cy.get(mcmElement.transitionToTarget, {timeout: 10000})
         .click();
          
-        cy.get('#edit-target> .modal-dialog > .modal-content')
+        cy.get(mcmElement.targetEditWindow)
         .should('not.be.visible');
 
-        cy.get('.btn.btn-add', {timeout: 10000})
+        cy.get(mcmElement.addButton, {timeout: 10000})
         .click();
 
-        cy.get('#edit-target> .modal-dialog > .modal-content')
+        cy.get(mcmElement.targetEditWindow)
         .should('be.visible');
        
     });
 
     it('4 case: visibility elements in add target window', () => {
 
-        cy.get('ul.secondary-menu.nav.navbar-nav > li:nth-child(2) > a', {timeout: 10000})
+        cy.get(mcmElement.transitionToTarget, {timeout: 10000})
         .click();
 
-        cy.get('.btn.btn-add', {timeout: 10000})
+        cy.get(mcmElement.addButton, {timeout: 10000})
         .click();
 
-        cy.get('#edit-target> .modal-dialog > .modal-content')
+        cy.get(mcmElement.targetEditWindow)
         .should('be.visible');
 
-        cy.log('Test title add page');
-
-        cy.get('#edit-target > div > div > div.modal-header.clearfix > h4')
+        cy.get(mcmElement.targetHeaderEditWindow)
         .should('be.visible')
         .and('have.text', mcm.targetAudience);
 
-        cy.get('#edit-target-form > div:nth-child(1) > label')
+        cy.get(mcmElement.targetLabelNameFieldEditWindow)
         .should('be.visible')
         .and('have.text', mcm.targetName);
 
-        cy.get('#name')
+        cy.get(mcmElement.targetInputNameField)
         .should('be.visible');
 
-        cy.get('#edit-target-form > div.checkbox > label')
+        cy.get(mcmElement.targetArchiveCheckboxLabelEditWindow)
         .should('be.visible');
 
-        cy.get('#edit-target-form > div:nth-child(5) > button')
+        cy.get(mcmElement.targetAddFilterButtonEditWindow)
         .should('be.visible');
 
-        cy.get('#edit-target-form > div.ng-scope > label')
+        cy.get(mcmElement.targetChooseFileLabelEditWindow)
         .should('be.visible');
 
-        cy.get('#cssFile')
+        cy.get(mcmElement.targetAddFileButtonEditWindow)
         .should('be.visible');
 
-        cy.get('#edit-target-form > table')
+        cy.get(mcmElement.targetDashbordContactEditWindow)
         .should('be.visible');
 
-        cy.get('#edit-target > div > div > div.modal-footer > button.btn.btn-default')
+        cy.get(mcmElement.targetCancelButtonEditWindow)
         .should('be.visible');
 
-        cy.get('#edit-target > div > div > div.modal-footer > button.btn.btn-primary')
+        cy.get(mcmElement.targetSaveButtonEditWindow)
         .should('be.visible');
 
        
@@ -122,11 +141,11 @@ describe('10 case for smoke test MCM', () => {
 
     it('5 case: search from upper case', () => {
 
-        cy.get('ul.secondary-menu.nav.navbar-nav > li:nth-child(2) > a', {timeout: 10000})
+        cy.get(mcmElement.transitionToTarget, {timeout: 10000})
         .click();
          
          
-       cy.get('.search> input')
+       cy.get(mcmElement.searchField)
        .type(`${testSearch[0].toUpperCase()+testSearch.slice(1, testSearch.length)}{enter}`);
        
        
@@ -143,11 +162,11 @@ describe('10 case for smoke test MCM', () => {
 
     it('6 case: search from lower case', () => {
 
-        cy.get('ul.secondary-menu.nav.navbar-nav > li:nth-child(2) > a', {timeout: 10000})
+        cy.get(mcmElement.transitionToTarget, {timeout: 10000})
         .click();
          
         
-       cy.get('.search> input')
+       cy.get(mcmElement.searchField)
        .type(`${testSearch[0].toLowerCase()+testSearch.slice(1, testSearch.length)}{enter}`);
        
        
@@ -160,12 +179,12 @@ describe('10 case for smoke test MCM', () => {
 
     it('7 case: search slice word', () => {
 
-        cy.get('ul.secondary-menu.nav.navbar-nav > li:nth-child(2) > a', {timeout: 10000})
+        cy.get(mcmElement.transitionToTarget, {timeout: 10000})
         .click();
          
         
 
-        cy.get('.search> input')
+        cy.get(mcmElement.searchField)
        .type(`${testSearchExactly.slice(0, testSearchExactly.length-2)}{enter}`);
        
        
@@ -178,12 +197,12 @@ describe('10 case for smoke test MCM', () => {
 
     it('8 case: search exactly word', () => {
 
-        cy.get('ul.secondary-menu.nav.navbar-nav > li:nth-child(2) > a', {timeout: 10000})
+        cy.get(mcmElement.transitionToTarget, {timeout: 10000})
         .click();
          
         
 
-        cy.get('.search> input')
+        cy.get(mcmElement.searchField)
        .type(`${testSearchExactly}{enter}`);
        
        
@@ -196,7 +215,7 @@ describe('10 case for smoke test MCM', () => {
 
     it('9 case, save TA with empty fields', () => {
 
-        cy.get('ul.secondary-menu.nav.navbar-nav > li:nth-child(2) > a', {timeout: 10000})
+        cy.get(mcmElement.transitionToTarget, {timeout: 10000})
         .click();
 
         cy.get('.btn.btn-add')
@@ -213,12 +232,12 @@ describe('10 case for smoke test MCM', () => {
         
     });
 
-    it('10 case, enter to add TA page and press Cancel', () => {
+    it('10 case: press Cancel button in Edit window', () => {
 
-        cy.get('ul.secondary-menu.nav.navbar-nav > li:nth-child(2) > a', {timeout: 10000})
+        cy.get(mcmElement.transitionToTarget, {timeout: 10000})
         .click();
 
-        cy.get('.btn.btn-add')
+        cy.get(mcmElement.addButton)
         .click();
  
         cy.get('#edit-target-form')

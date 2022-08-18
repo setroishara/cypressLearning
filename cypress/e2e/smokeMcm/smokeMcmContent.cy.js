@@ -1,7 +1,8 @@
 import Service from './service.js';
-import mcm from '../../fixtures/mcm.json'
+import mcm from '../../fixtures/mcmSettings.json'
+import mcmElement from '../../fixtures/mcmElement.json'
 
-describe('Test main page of MCM', () => {
+describe('Test content page of MCM', () => {
 
     const service = new Service();
     beforeEach (() => {
@@ -27,33 +28,33 @@ describe('Test main page of MCM', () => {
 
    
 
-    it('1 case: visibility of elements', () => {
+    it('1 case: visibility main elements', () => {
 
-        cy.get('ul.secondary-menu.nav.navbar-nav > li:nth-child(1) > a')
+        cy.get(mcmElement.transitionToContent)
         .click();
 
-        cy.get('div.search')
+        cy.get(mcmElement.searchField)
         .should('be.visible');
 
-        cy.get('div.header-list-group')
+        cy.get(mcmElement.headerListGroup)
         .should('be.visible');
 
-        cy.get('.header-list-group > .checkbox')
+        cy.get(mcmElement.showArchiveChrxbox)
         .should('be.visible');
 
-        cy.get('#dropdown-li-none')
+        cy.get(mcmElement.sortDropDownMenu)
         .should('be.visible');
 
-        cy.get('.header-list-group > button')
+        cy.get(mcmElement.filterButton)
         .should('be.visible');
 
-        cy.get('.pagination')
+        cy.get(mcmElement.paginationBlock)
         .should('be.visible');
 
-        cy.get('div.input-group')
+        cy.get(mcmElement.paginationEnterPageNumber)
         .should('be.visible');
 
-        cy.get('div.add-button-dropdown')
+        cy.get(mcmElement.addButton)
         .should('be.visible');
 
         
@@ -61,55 +62,64 @@ describe('Test main page of MCM', () => {
     });
 
     it('2 case: open content creation method selection', () => {
-        cy.get('ul.secondary-menu.nav.navbar-nav > li:nth-child(1) > a')
+        cy.get(mcmElement.transitionToContent)
         .click();
 
-        cy.get('.btn-telegram')
+        cy.get(mcmElement.contentTelegramButton)
         .should('not.be.visible');
 
-        cy.get('.btn-viber')
+        cy.get(mcmElement.contentViberButton)
         .should('not.be.visible');
 
-        cy.get('.btn-sms')
+        cy.get(mcmElement.contentSmsButton)
         .should('not.be.visible');
 
-        cy.get('.btn-email')
+        cy.get(mcmElement.contentEmailButton)
         .should('not.be.visible');
 
-        cy.get('div.add-button-dropdown', {timeout: 10000})
+        cy.get(mcmElement.addButton, {timeout: 10000})
         .should('be.visible')
         .click();
 
-        cy.get('.btn-telegram')
+        cy.get(mcmElement.contentTelegramButton)
         .should('be.visible');
 
-        cy.get('.btn-viber')
+        cy.get(mcmElement.contentViberButton)
         .should('be.visible');
 
-        cy.get('.btn-sms')
+        cy.get(mcmElement.contentSmsButton)
         .should('be.visible');
 
-        cy.get('.btn-email')
+        cy.get(mcmElement.contentEmailButton)
         .should('be.visible');
     });
 
     it('3 case: visibility of viber content creation elements', () => {
-        cy.get('ul.secondary-menu.nav.navbar-nav > li:nth-child(1) > a', {timeout:10000})
+
+        cy.get(mcmElement.transitionToContent)
         .click();
 
-        cy.get('div.add-button-dropdown', {timeout: 10000})
+        cy.get(mcmElement.addButton, {timeout:10000})
         .click();
 
-        cy.get('.btn-viber')
+        cy.get(mcmElement.contentViberButton)
         .click();
 
-        cy.get('#edit-viber > div > div')
+        cy.get(mcmElement.contentEditViberWindow)
         .should('be.visible');
 
-        cy.get('#edit-viber > div > div > .modal-header > h4')
+        cy.get(mcmElement.contentHeaderEditViberWindow)
+        .should('be.visible')
+        .and('have.text', mcm.contentViberNameEditWindow);
+
+        cy.get(mcmElement.contentNameLabelEditViberWindow)
+        .should('be.visible')
+        .and('have.text', mcm.contentViberName);
+
+        cy.get(mcmElement.contentNameFieldEditViberWindow, {timeout:10000})
         .should('be.visible');
 
-        cy.get('#edit-viber > div > div > .modal-header > h4')
+        cy.get(mcmElement.contentMarkFieldEditViberWindow)
         .should('be.visible');
 
 
